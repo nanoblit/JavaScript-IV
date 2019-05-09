@@ -28,7 +28,7 @@ var Instructor = (function (_super) {
     __extends(Instructor, _super);
     function Instructor(props) {
         var _this = _super.call(this, props) || this;
-        _this.speciality = props.speciality;
+        _this.specialty = props.specialty;
         _this.favLanguage = props.favLanguage;
         _this.catchPhrase = props.catchPhrase;
         return _this;
@@ -78,8 +78,9 @@ var ProjectManager = (function (_super) {
     ProjectManager.prototype.standUp = function (channel) {
         console.log(this.name + " announces to " + channel + ", @channel standy times!\u200B\u200B\u200B\u200B\u200B");
     };
-    ProjectManager.prototype.debugCode = function (student, subject) {
-        console.log(this.name + " debugs " + student.name + "'s code on " + subject);
+    ProjectManager.prototype.debugCode = function (_a, subject) {
+        var name = _a.name;
+        console.log(this.name + " debugs " + name + "'s code on " + subject);
     };
     ProjectManager.prototype.gradeStudent = function (student) {
         student.grade += Math.round(Math.random() * 20 - 10);
@@ -152,7 +153,7 @@ var adrian = new ProjectManager({
     specialty: "Front-end",
     catchPhrase: "Don't forget the homies",
     gradClassName: "CS34342",
-    favInstructor: "Gabe"
+    favInstructor: gabe
 });
 adrian.standUp("CS34342");
 var filip = new ProjectManager({
@@ -164,7 +165,7 @@ var filip = new ProjectManager({
     specialty: "Front-end",
     catchPhrase: "Don't forget the homies",
     gradClassName: "CS42",
-    favInstructor: "fred"
+    favInstructor: fred
 });
 filip.debugCode(emily, "JavaScript");
 var GameObject = (function () {

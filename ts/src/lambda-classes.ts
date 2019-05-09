@@ -1,37 +1,71 @@
+interface PersonProps {
+    name: string;
+    age: number;
+    location: string;
+    gender: string;
+}
+
 class Person {
-    constructor(props) {
+    name: string;
+    age: number;
+    location: string;
+    gender: string;
+
+    constructor(props: PersonProps) {
         this.name = props.name;
         this.age = props.age;
         this.location = props.location;
         this.gender = props.gender;
     }
 
-    speak() {
+    speak(): void {
         console.log(
             `Hello my name is ${this.name}, I am from ${this.location}`
         );
     }
 }
 
+interface InstructorProps extends PersonProps {
+    specialty: string;
+    favLanguage: string;
+    catchPhrase: string;
+}
+
 class Instructor extends Person {
-    constructor(props) {
+    specialty: string;
+    favLanguage: string;
+    catchPhrase: string;
+
+    constructor(props: InstructorProps) {
         super(props);
-        this.speciality = props.speciality;
+        this.specialty = props.specialty;
         this.favLanguage = props.favLanguage;
         this.catchPhrase = props.catchPhrase;
     }
 
-    demo(subject) {
+    demo(subject: string): void {
         console.log(`Today we are learning about ${subject}`);
     }
 
-    grade(student, subject) {
+    grade(student: Student, subject: string): void {
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
 }
 
+interface StudentProps extends PersonProps {
+    previousBackground: string;
+    className: string;
+    favSubjects: string[];
+    grade: number;
+}
+
 class Student extends Person {
-    constructor(props) {
+    previousBackground: string;
+    className: string;
+    favSubjects: string[];
+    grade: number;
+
+    constructor(props: StudentProps) {
         super(props);
         this.previousBackground = props.previousBackground;
         this.className = props.className;
@@ -39,43 +73,51 @@ class Student extends Person {
         this.grade = props.grade;
     }
 
-    listsSubjects() {
+    listsSubjects(): void {
         console.log(this.favSubjects.join(", "));
     }
 
-    PRAssignment(subject) {
+    PRAssignment(subject: string): void {
         console.log(`${this.name} has submitted a PR for ${subject}`);
     }
 
-    sprintChallenge(subject) {
+    sprintChallenge(subject: string): void {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
 
-    graduate() {
+    graduate(): void {
         if (this.grade > 70) {
             console.log(`${this.name} has graduated!`);
         }
     }
 }
 
+interface ProjectManagerProps extends InstructorProps {
+    gradClassName: string;
+    favInstructor: Instructor;
+}
+
 class ProjectManager extends Instructor {
-    constructor(props) {
+    gradClassName: string;
+    favInstructor: Instructor;
+
+    constructor(props: ProjectManagerProps) {
         super(props);
         this.gradClassName = props.gradClassName;
         this.favInstructor = props.favInstructor;
     }
 
-    standUp(channel) {
+    standUp(channel: string): void {
         console.log(
             `${this.name} announces to ${channel}, @channel standy times!​​​​​`
         );
     }
 
-    debugCode(student, subject) {
-        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`);
+    debugCode({ name }: Student, subject: string) {
+        console.log(`${this.name} debugs ${name}'s code on ${subject}`);
     }
 
-    gradeStudent(student) {
+    gradeStudent(student: Student) {
         student.grade += Math.round(Math.random() * 20 - 10);
     }
 }
@@ -158,7 +200,7 @@ const adrian = new ProjectManager({
     specialty: "Front-end",
     catchPhrase: `Don't forget the homies`,
     gradClassName: "CS34342",
-    favInstructor: "Gabe"
+    favInstructor: gabe
 });
 
 adrian.standUp("CS34342");
@@ -172,7 +214,7 @@ const filip = new ProjectManager({
     specialty: "Front-end",
     catchPhrase: `Don't forget the homies`,
     gradClassName: "CS42",
-    favInstructor: "fred"
+    favInstructor: fred
 });
 
 filip.debugCode(emily, "JavaScript");

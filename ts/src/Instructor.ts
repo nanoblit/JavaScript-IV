@@ -1,5 +1,5 @@
-import { Person, PersonProps } from "Person";
-import { Student } from "Student";
+import { Person, PersonProps } from "./Person";
+import { Student } from "./Student";
 
 export interface InstructorProps extends PersonProps {
     specialty: string;

@@ -1,7 +1,7 @@
-import { Person } from "Person";
-import { Instructor } from "Instructor";
-import { Student } from "Student";
-import { ProjectManager } from "ProjectManager";
+import { Person } from "./Person";
+import { Instructor } from "./Instructor";
+import { Student } from "./Student";
+import { ProjectManager } from "./ProjectManager";
 
 const jon = new Person({
     name: "Jon",

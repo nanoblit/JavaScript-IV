@@ -1,4 +1,4 @@
-import {Person, PersonProps} from "Person";
+import { Person, PersonProps } from "./Person";
 
 export interface StudentProps extends PersonProps {
     previousBackground: string;

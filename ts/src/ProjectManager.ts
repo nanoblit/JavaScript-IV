@@ -1,5 +1,5 @@
-import { Instructor, InstructorProps } from "Instructor";
-import { Student } from "Student";
+import { Instructor, InstructorProps } from "./Instructor";
+import { Student } from "./Student";
 
 export interface ProjectManagerProps extends InstructorProps {
     gradClassName: string;

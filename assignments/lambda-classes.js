@@ -50,6 +50,12 @@ class Student extends Person {
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
+
+    graduate() {
+        if (this.grade > 70) {
+            console.log(`${this.name} has graduated!`);
+        }
+    }
 }
 
 class ProjectManager extends Instructor {
@@ -67,6 +73,10 @@ class ProjectManager extends Instructor {
 
     debugCode(student, subject) {
         console.log(`${this.name} debugs ${student.name}'s code on ${subject}`);
+    }
+
+    gradeStudent(student) {
+        student.grade += Math.round(Math.random() * 20 - 10);
     }
 }
 

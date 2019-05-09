@@ -12,162 +12,186 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Person = (function () {
-    function Person(props) {
-        this.name = props.name;
-        this.age = props.age;
-        this.location = props.location;
-        this.gender = props.gender;
-    }
-    Person.prototype.speak = function () {
-        console.log("Hello my name is " + this.name + ", I am from " + this.location);
-    };
-    return Person;
-}());
-var Instructor = (function (_super) {
-    __extends(Instructor, _super);
-    function Instructor(props) {
-        var _this = _super.call(this, props) || this;
-        _this.specialty = props.specialty;
-        _this.favLanguage = props.favLanguage;
-        _this.catchPhrase = props.catchPhrase;
-        return _this;
-    }
-    Instructor.prototype.demo = function (subject) {
-        console.log("Today we are learning about " + subject);
-    };
-    Instructor.prototype.grade = function (student, subject) {
-        console.log(student.name + " receives a perfect score on " + subject);
-    };
-    return Instructor;
-}(Person));
-var Student = (function (_super) {
-    __extends(Student, _super);
-    function Student(props) {
-        var _this = _super.call(this, props) || this;
-        _this.previousBackground = props.previousBackground;
-        _this.className = props.className;
-        _this.favSubjects = props.favSubjects;
-        _this.grade = props.grade;
-        return _this;
-    }
-    Student.prototype.listsSubjects = function () {
-        console.log(this.favSubjects.join(", "));
-    };
-    Student.prototype.PRAssignment = function (subject) {
-        console.log(this.name + " has submitted a PR for " + subject);
-    };
-    Student.prototype.sprintChallenge = function (subject) {
-        console.log(this.name + " has begun sprint challenge on " + subject);
-    };
-    Student.prototype.graduate = function () {
-        if (this.grade > 70) {
-            console.log(this.name + " has graduated!");
+define("Person", ["require", "exports"], function (require, exports) {
+    "use strict";
+    exports.__esModule = true;
+    var Person = (function () {
+        function Person(props) {
+            this.name = props.name;
+            this.age = props.age;
+            this.location = props.location;
+            this.gender = props.gender;
         }
-    };
-    return Student;
-}(Person));
-var ProjectManager = (function (_super) {
-    __extends(ProjectManager, _super);
-    function ProjectManager(props) {
-        var _this = _super.call(this, props) || this;
-        _this.gradClassName = props.gradClassName;
-        _this.favInstructor = props.favInstructor;
-        return _this;
-    }
-    ProjectManager.prototype.standUp = function (channel) {
-        console.log(this.name + " announces to " + channel + ", @channel standy times!\u200B\u200B\u200B\u200B\u200B");
-    };
-    ProjectManager.prototype.debugCode = function (_a, subject) {
-        var name = _a.name;
-        console.log(this.name + " debugs " + name + "'s code on " + subject);
-    };
-    ProjectManager.prototype.gradeStudent = function (student) {
-        student.grade += Math.round(Math.random() * 20 - 10);
-    };
-    return ProjectManager;
-}(Instructor));
-var jon = new Person({
-    name: "Jon",
-    location: "Burningfyre",
-    age: 20,
-    gender: "male"
+        Person.prototype.speak = function () {
+            console.log("Hello my name is " + this.name + ", I am from " + this.location);
+        };
+        return Person;
+    }());
+    exports.Person = Person;
 });
-jon.speak();
-var adam = new Person({
-    name: "Adam",
-    location: "Flup",
-    age: 28,
-    gender: "male"
+define("Student", ["require", "exports", "Person"], function (require, exports, Person_1) {
+    "use strict";
+    exports.__esModule = true;
+    var Student = (function (_super) {
+        __extends(Student, _super);
+        function Student(props) {
+            var _this = _super.call(this, props) || this;
+            _this.previousBackground = props.previousBackground;
+            _this.className = props.className;
+            _this.favSubjects = props.favSubjects;
+            _this.grade = props.grade;
+            return _this;
+        }
+        Student.prototype.listsSubjects = function () {
+            console.log(this.favSubjects.join(", "));
+        };
+        Student.prototype.PRAssignment = function (subject) {
+            console.log(this.name + " has submitted a PR for " + subject);
+        };
+        Student.prototype.sprintChallenge = function (subject) {
+            console.log(this.name + " has begun sprint challenge on " + subject);
+        };
+        Student.prototype.graduate = function () {
+            if (this.grade > 70) {
+                console.log(this.name + " has graduated!");
+            }
+        };
+        return Student;
+    }(Person_1.Person));
+    exports.Student = Student;
 });
-adam.speak();
-var emily = new Student({
-    name: "Emily",
-    location: "Fundrom",
-    age: 19,
-    gender: "female",
-    previousBackground: "shopkeeper",
-    className: "CS54665",
-    favSubjects: ["CSS", "JS"],
-    grade: 56
+define("instructor", ["require", "exports", "Person"], function (require, exports, Person_2) {
+    "use strict";
+    exports.__esModule = true;
+    var Instructor = (function (_super) {
+        __extends(Instructor, _super);
+        function Instructor(props) {
+            var _this = _super.call(this, props) || this;
+            _this.specialty = props.specialty;
+            _this.favLanguage = props.favLanguage;
+            _this.catchPhrase = props.catchPhrase;
+            return _this;
+        }
+        Instructor.prototype.demo = function (subject) {
+            console.log("Today we are learning about " + subject);
+        };
+        Instructor.prototype.grade = function (student, subject) {
+            console.log(student.name + " receives a perfect score on " + subject);
+        };
+        return Instructor;
+    }(Person_2.Person));
+    exports.Instructor = Instructor;
 });
-emily.listsSubjects();
-var albert = new Student({
-    name: "Albert",
-    location: "Stumpfield",
-    age: 37,
-    gender: "male",
-    previousBackground: "lumberjack",
-    className: "CS12",
-    favSubjects: ["JavaScript"],
-    grade: 34
+define("ProjectManager", ["require", "exports", "instructor"], function (require, exports, Instructor_1) {
+    "use strict";
+    exports.__esModule = true;
+    var ProjectManager = (function (_super) {
+        __extends(ProjectManager, _super);
+        function ProjectManager(props) {
+            var _this = _super.call(this, props) || this;
+            _this.gradClassName = props.gradClassName;
+            _this.favInstructor = props.favInstructor;
+            return _this;
+        }
+        ProjectManager.prototype.standUp = function (channel) {
+            console.log(this.name + " announces to " + channel + ", @channel standy times!\u200B\u200B\u200B\u200B\u200B");
+        };
+        ProjectManager.prototype.debugCode = function (_a, subject) {
+            var name = _a.name;
+            console.log(this.name + " debugs " + name + "'s code on " + subject);
+        };
+        ProjectManager.prototype.gradeStudent = function (student) {
+            student.grade += Math.round(Math.random() * 20 - 10);
+        };
+        return ProjectManager;
+    }(Instructor_1.Instructor));
+    exports.ProjectManager = ProjectManager;
 });
-albert.sprintChallenge("React");
-albert.PRAssignment("React");
-var fred = new Instructor({
-    name: "Fred",
-    location: "Bedrock",
-    age: 37,
-    gender: "male",
-    favLanguage: "JavaScript",
-    specialty: "Front-end",
-    catchPhrase: "Don't forget the homies"
+define("lambda-classes", ["require", "exports", "Person", "instructor", "Student", "ProjectManager"], function (require, exports, Person_3, Instructor_2, Student_1, ProjectManager_1) {
+    "use strict";
+    exports.__esModule = true;
+    var jon = new Person_3.Person({
+        name: "Jon",
+        location: "Burningfyre",
+        age: 20,
+        gender: "male"
+    });
+    jon.speak();
+    var adam = new Person_3.Person({
+        name: "Adam",
+        location: "Flup",
+        age: 28,
+        gender: "male"
+    });
+    adam.speak();
+    var emily = new Student_1.Student({
+        name: "Emily",
+        location: "Fundrom",
+        age: 19,
+        gender: "female",
+        previousBackground: "shopkeeper",
+        className: "CS54665",
+        favSubjects: ["CSS", "JS"],
+        grade: 56
+    });
+    emily.listsSubjects();
+    var albert = new Student_1.Student({
+        name: "Albert",
+        location: "Stumpfield",
+        age: 37,
+        gender: "male",
+        previousBackground: "lumberjack",
+        className: "CS12",
+        favSubjects: ["JavaScript"],
+        grade: 34
+    });
+    albert.sprintChallenge("React");
+    albert.PRAssignment("React");
+    var fred = new Instructor_2.Instructor({
+        name: "Fred",
+        location: "Bedrock",
+        age: 37,
+        gender: "male",
+        favLanguage: "JavaScript",
+        specialty: "Front-end",
+        catchPhrase: "Don't forget the homies"
+    });
+    fred.demo("JavaScript");
+    var gabe = new Instructor_2.Instructor({
+        name: "Gabe",
+        location: "London",
+        age: 30,
+        gender: "male",
+        favLanguage: "JavaScript",
+        specialty: "Front-end",
+        catchPhrase: "Ooh, you are awful ... but I like you!"
+    });
+    fred.grade(emily, "CSS");
+    var adrian = new ProjectManager_1.ProjectManager({
+        name: "Adrian",
+        location: "Bedrock",
+        age: 37,
+        gender: "male",
+        favLanguage: "JavaScript",
+        specialty: "Front-end",
+        catchPhrase: "Don't forget the homies",
+        gradClassName: "CS34342",
+        favInstructor: gabe
+    });
+    adrian.standUp("CS34342");
+    var filip = new ProjectManager_1.ProjectManager({
+        name: "Filip",
+        location: "Bedrock",
+        age: 37,
+        gender: "male",
+        favLanguage: "JavaScript",
+        specialty: "Front-end",
+        catchPhrase: "Don't forget the homies",
+        gradClassName: "CS42",
+        favInstructor: fred
+    });
+    filip.debugCode(emily, "JavaScript");
 });
-fred.demo("JavaScript");
-var gabe = new Instructor({
-    name: "Gabe",
-    location: "London",
-    age: 30,
-    gender: "male",
-    favLanguage: "JavaScript",
-    specialty: "Front-end",
-    catchPhrase: "Ooh, you are awful ... but I like you!"
-});
-fred.grade(emily, "CSS");
-var adrian = new ProjectManager({
-    name: "Adrian",
-    location: "Bedrock",
-    age: 37,
-    gender: "male",
-    favLanguage: "JavaScript",
-    specialty: "Front-end",
-    catchPhrase: "Don't forget the homies",
-    gradClassName: "CS34342",
-    favInstructor: gabe
-});
-adrian.standUp("CS34342");
-var filip = new ProjectManager({
-    name: "Filip",
-    location: "Bedrock",
-    age: 37,
-    gender: "male",
-    favLanguage: "JavaScript",
-    specialty: "Front-end",
-    catchPhrase: "Don't forget the homies",
-    gradClassName: "CS42",
-    favInstructor: fred
-});
-filip.debugCode(emily, "JavaScript");
 var GameObject = (function () {
     function GameObject(props) {
         this.createdAt = props.createdAt;

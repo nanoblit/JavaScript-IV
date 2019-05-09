@@ -371,4 +371,8 @@ define("prototype-refactor", ["require", "exports", "Humanoid", "Hero", "Villain
         nomu.runAway();
     }
 });
+define("index", ["require", "exports", "lambda-classes", "prototype-refactor"], function (require, exports) {
+    "use strict";
+    exports.__esModule = true;
+});
 //# sourceMappingURL=index.js.map

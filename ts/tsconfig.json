@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "strict": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "watch": true,
+        "outFile": "dist/js/index.js"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
